@@ -1,21 +1,13 @@
 const NavBar = () => {
     return (
-        <header className="container-fluid">
-            <h1 className="text-3xl font-bold underline">CREATORVERSE</h1>
-            <button className="btn">Button</button>
-            <nav className="container">
-                <ul className="grid">
-                    <li>
-                        <a href='/' className="button">View All Creators</a>
-                    </li>
-                    <li>
-                        <a href='/new' className="button">Add a Creator</a>
-                    </li>
-                </ul>
+        <header className="header-bg w-full h-full bg-cover bg-center flex flex-col justify-center items-center">
+            <h1 className="text-6xl font-bold mb-24 font-serif text-white">CREATORVERSE</h1>
+            <nav className="flex space-x-20">
+                <a href='/' className="btn btn-wide btn-info">View All Creators</a>
+                <a href='/new' className="btn btn-wide btn-info">Add a Creator</a>
             </nav>
         </header>
-
-    )
+    );
 };
 
 
