@@ -5,7 +5,7 @@ function App() {
     return (
         <div className="h-screen">
             <NavBar />
-            <div className="bg-slate-900 h-screen">
+            <div className="bg-slate-900">
                 <Outlet />
             </div>
         </div>
