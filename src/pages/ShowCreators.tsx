@@ -1,9 +1,11 @@
+import { CreatorCard } from '../compoents'
+
 const ShowCreatorPage = () => {
     return (
-      <div>
-        <h1>Show Creator</h1>
-      </div>
-    );
-  }
-  
-  export default ShowCreatorPage;
+        <div>
+            <CreatorCard />
+        </div>
+    )
+}
+
+export default ShowCreatorPage
