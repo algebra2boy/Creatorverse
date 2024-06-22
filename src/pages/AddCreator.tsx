@@ -1,13 +1,6 @@
 import { useState } from 'react'
-
-export interface Content {
-    name: string
-    image: string
-    description: string
-    youtube: string
-    twitter: string
-    instagram: string
-}
+import { supabase } from '../clients'
+import { Content } from '../types/Content'
 
 const AddCreatorPage = () => {
     const [content, setContent] = useState<Content>({
@@ -26,23 +19,35 @@ const AddCreatorPage = () => {
         })
     }
 
-    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        
-        ;
-    };
+    const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        const { data, error } = await supabase
+            .from('creators')
+            .insert({
+                name: content.name,
+                image: content.image,
+                description: content.description,
+                youtube: content.youtube,
+                twitter: content.twitter,
+                instagram: content.instagram,
+            })
+            .select()
+        console.log(data, error)
+    }
 
     return (
         <div className="flex flex-col justify-center items-center pb-20">
-            <p className="text-white">{JSON.stringify(content)}</p>
             <form onSubmit={submitHandler}>
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text text-white text-2xl">Name</span>
+                        <span className="label-text text-white text-2xl">
+                            Name
+                        </span>
                     </div>
                     <input
                         type="text"
-                        className="input input-bordered w-full max-w-xs"
+                        className="input input-bordered"
                         name="name"
                         onChange={inputHandler}
                     />
@@ -50,10 +55,15 @@ const AddCreatorPage = () => {
 
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text text-white text-2xl">Image</span>
+                        <span className="label-text text-white text-2xl">
+                            Image
+                        </span>
                     </div>
                     <div className="label -mt-2">
-                        <span className="label-text text-white">Provide a link to an image of your creator. Be sure to include the http://</span>
+                        <span className="label-text text-white">
+                            Provide a link to an image of your creator. Be sure
+                            to include the http://
+                        </span>
                     </div>
                     <input
                         type="text"
@@ -65,10 +75,15 @@ const AddCreatorPage = () => {
 
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text text-white text-2xl">Description</span>
+                        <span className="label-text text-white text-2xl">
+                            Description
+                        </span>
                     </div>
                     <div className="label -mt-2">
-                        <span className="label-text text-white">Provide a description of the creator. Who are they? What makes them interesting?</span>
+                        <span className="label-text text-white">
+                            Provide a description of the creator. Who are they?
+                            What makes them interesting?
+                        </span>
                     </div>
                     <input
                         type="text"
@@ -80,20 +95,27 @@ const AddCreatorPage = () => {
 
                 <label className="w-full max-w-xs mt-10">
                     <div className="label">
-                        <span className="label-text text-blue-500 text-sm">SOCIAL MEDIA LINKS</span>
+                        <span className="label-text text-blue-500 text-sm">
+                            SOCIAL MEDIA LINKS
+                        </span>
                     </div>
                     <div className="label -mt-2">
-                        <span className="label-text text-white text-xs">Provide at least one of the creator's social media links.</span>
+                        <span className="label-text text-white text-xs">
+                            Provide at least one of the creator's social media
+                            links.
+                        </span>
                     </div>
                 </label>
 
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text text-white text-2xl">YouTube</span>
+                        <span className="label-text text-white text-2xl">
+                            YouTube
+                        </span>
                     </div>
                     <div className="label -mt-2">
-                        <span className="label-text text-white">The creator's YouTube handle (without the @)
-
+                        <span className="label-text text-white">
+                            The creator's YouTube handle (without the @)
                         </span>
                     </div>
                     <input
@@ -106,10 +128,14 @@ const AddCreatorPage = () => {
 
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text text-white text-2xl">Twitter</span>
+                        <span className="label-text text-white text-2xl">
+                            Twitter
+                        </span>
                     </div>
                     <div className="label -mt-2">
-                        <span className="label-text text-white">The creator's Twitter handle (without the @)</span>
+                        <span className="label-text text-white">
+                            The creator's Twitter handle (without the @)
+                        </span>
                     </div>
                     <input
                         type="text"
@@ -121,10 +147,14 @@ const AddCreatorPage = () => {
 
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text text-white text-2xl">Instagram</span>
+                        <span className="label-text text-white text-2xl">
+                            Instagram
+                        </span>
                     </div>
                     <div className="label -mt-2">
-                        <span className="label-text text-white">The creator's Instagram handle (without the @)</span>
+                        <span className="label-text text-white">
+                            The creator's Instagram handle (without the @)
+                        </span>
                     </div>
                     <input
                         type="text"
@@ -134,9 +164,13 @@ const AddCreatorPage = () => {
                     />
                 </label>
 
-                <button className="btn btn-wide btn-info mt-10" type='submit'>Submit</button>
+                <button
+                    className="btn btn-info mt-10 w-full max-w-xs"
+                    type="submit"
+                >
+                    Submit
+                </button>
             </form>
-
         </div>
     )
 }
