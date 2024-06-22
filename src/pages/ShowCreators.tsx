@@ -16,14 +16,14 @@ const ShowCreatorPage = () => {
             }
             setCreators(data as Content[])
         }
-        fetchCreators()
+        fetchCreators();
     }, [])
 
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                {creators?.map((creator, id) => {
-                    return <CreatorCard {...creator} key={id} />
+                {creators?.map((creator) => {
+                    return <CreatorCard {...creator} key={creator.id} />
                 })}
             </div>
         </div>

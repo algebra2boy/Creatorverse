@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 import { Content } from '../types/Content'
 
 const CreatorCard = (creator: Content) => {
     return (
         <div
-            className="card w-80 h-80 shadow-xl bg-slate-700"
+            className="card w-96 h-80 shadow-xl bg-slate-700"
             style={{
                 backgroundImage: creator.image
                     ? `url(${creator.image})`
@@ -18,8 +19,15 @@ const CreatorCard = (creator: Content) => {
                         {creator.name ?? ''}
                     </h2>
                     <div className="flex space-x-4 mt-2">
-                        <i className="fa fa-info text-white"></i>
-                        <i className="fa fa-pencil text-white"></i>
+                        <Link 
+                            to={`/${creator.id}`}
+                            state={{ creator }}
+                        >
+                            <i className="fa fa-info text-white"></i>
+                        </Link>
+                        <Link to={"/"}>
+                            <i className="fa fa-pencil text-white"></i>
+                        </Link>
                     </div>
                 </div>
                 <div className="flex icon-section flex-row space-x-4 mt-2 mb-4">
