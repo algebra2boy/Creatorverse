@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Content } from "../types/Content";
 import { supabase } from "../clients";
 import { useEffect, useState } from "react";
@@ -7,6 +7,8 @@ const ViewCreatorPage = () => {
 
     const params = useParams();
     const id = params.id;
+
+    const navigate = useNavigate();
 
     const [creator, setCreator] = useState<Content | null>(null);
 
@@ -23,6 +25,14 @@ const ViewCreatorPage = () => {
         }
         fetchCreator();
     }, [id])
+
+    async function deleteCreator() {
+        await supabase
+            .from('creators')
+            .delete()
+            .eq('id', id)
+        navigate('/')
+    }
 
     return (
         <>
@@ -58,8 +68,8 @@ const ViewCreatorPage = () => {
 
             </div>
             <div className="flex justify-center gap-5 pb-24">
-                <button className="btn btn-info btn-wide">EDIT</button>
-                <button className="btn btn-warning btn-wide">DELETE</button>
+                <button className="btn btn-info btn-wide" onClick={() => navigate(`/edit/${creator?.id}`)}>EDIT</button>
+                <button className="btn btn-warning btn-wide" onClick={deleteCreator}>DELETE</button>
             </div>
         </>
     )

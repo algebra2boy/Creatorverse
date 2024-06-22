@@ -24,7 +24,7 @@ const CreatorCard = (creator: Content) => {
                         >
                             <i className="fa fa-info text-white"></i>
                         </Link>
-                        <Link to={"/"}>
+                        <Link to={`/edit/${creator.id}`}>
                             <i className="fa fa-pencil text-white"></i>
                         </Link>
                     </div>

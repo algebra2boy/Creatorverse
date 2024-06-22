@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { supabase } from '../clients'
 import { Content } from '../types/Content'
+import { useNavigate } from 'react-router-dom'
 
 const AddCreatorPage = () => {
+
+    const navigate = useNavigate()
+
     const [content, setContent] = useState<Omit<Content, "id">>({
         name: '',
         image: '',
@@ -38,6 +42,7 @@ const AddCreatorPage = () => {
             console.error(error)
             return
         }
+        navigate('/')
     }
 
     return (
