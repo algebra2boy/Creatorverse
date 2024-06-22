@@ -19,9 +19,8 @@ const CreatorCard = (creator: Content) => {
                         {creator.name ?? ''}
                     </h2>
                     <div className="flex space-x-4 mt-2">
-                        <Link 
+                        <Link
                             to={`/${creator.id}`}
-                            state={{ creator }}
                         >
                             <i className="fa fa-info text-white"></i>
                         </Link>
