@@ -36,7 +36,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-
+https://github.com/algebra2boy/Creatorverse/assets/103079472/cbef74cf-dbbf-452b-9ff7-301ee7ad7be3
 
 ## Notes
 
