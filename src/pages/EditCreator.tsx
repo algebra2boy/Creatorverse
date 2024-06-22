@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../clients'
 import { Content } from '../types/Content'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const EditreatorPage = () => {
 
-    const navigate = useNavigate()
+    const params = useParams()
+    const id = params.id
 
+    const navigate = useNavigate()
+    
     const [content, setContent] = useState<Content>({
         id: 0,
         name: '',
@@ -19,7 +22,7 @@ const EditreatorPage = () => {
 
     useEffect(() => {
         const fetchCreator = async () => {
-            const { data, error } = await supabase.from('creators').select().eq('id', content.id);
+            const { data, error } = await supabase.from('creators').select().eq('id', id);
             if (error) {
                 console.error(error)
                 return
@@ -29,7 +32,7 @@ const EditreatorPage = () => {
             }
         }
         fetchCreator();
-    }, []);
+    }, [id]);
 
     const inputHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setContent({
@@ -61,7 +64,7 @@ const EditreatorPage = () => {
 
     return (
         <div className="flex flex-col justify-center items-center pb-20">
-            <form>
+            <div>
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
                         <span className="label-text text-white text-2xl">
@@ -73,6 +76,7 @@ const EditreatorPage = () => {
                         className="input input-bordered"
                         name="name"
                         onChange={inputHandler}
+                        value={content.name}
                     />
                 </label>
 
@@ -93,6 +97,7 @@ const EditreatorPage = () => {
                         className="input input-bordered w-full max-w-xs"
                         name="image"
                         onChange={inputHandler}
+                        value={content.image}
                     />
                 </label>
 
@@ -112,6 +117,7 @@ const EditreatorPage = () => {
                         className="textarea textarea-bordered h-24"
                         name="description"
                         onChange={inputHandler}
+                        value={content.description}
                     />
                 </label>
 
@@ -148,6 +154,7 @@ const EditreatorPage = () => {
                         className="input input-bordered w-full max-w-xs"
                         name="youtube"
                         onChange={inputHandler}
+                        value={content.youtube}
                     />
                 </label>
 
@@ -170,6 +177,7 @@ const EditreatorPage = () => {
                         className="input input-bordered w-full max-w-xs"
                         name="twitter"
                         onChange={inputHandler}
+                        value={content.twitter}
                     />
                 </label>
 
@@ -192,6 +200,7 @@ const EditreatorPage = () => {
                         className="input input-bordered w-full max-w-xs"
                         name="instagram"
                         onChange={inputHandler}
+                        value={content.instagram}
                     />
                 </label>
 
@@ -207,7 +216,7 @@ const EditreatorPage = () => {
                 >
                     Delete
                 </button>
-            </form>
+            </div>
         </div>
     )
 }

@@ -15,7 +15,7 @@ const CreatorCard = (creator: Content) => {
         >
             <div className="card-body text-dark flex flex-col justify-center min-h-full">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="card-title text-sm font-bold text-white">
+                    <h2 className="card-title text-xl font-bold text-white">
                         {creator.name ?? ''}
                     </h2>
                     <div className="flex space-x-4 mt-2">
